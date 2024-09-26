@@ -1,0 +1,47 @@
+replicaCount: 2
+
+image:
+  repository: docker.io/library/contador-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: contador.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+redis:
+  host: contador-app-redis-master
+  port: 6379
+  password: mysecret
+
+redisChart:
+  enabled: true
+  auth:
+    enabled: true
+    password: mysecret
+  master:
+    persistence:
+      enabled: false
