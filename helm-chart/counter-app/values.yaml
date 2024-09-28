@@ -1,0 +1,67 @@
+replicaCount: 3
+
+image:
+  repository: thomasalberto/counter-app
+  tag: v2
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 5000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 5000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+redis:
+  name: redis
+  replicas: 1
+  image:
+    repository: redis
+    tag: alpine
+  service:
+    name: counter-app-redis-service
+    port: 6379
+    targetPort: 6379
+  persistence:
+    accessMode: ReadWriteOnce
+    size: 500Mi
+    storageClass: ""
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+  password: password123  # Este valor será codificado en base64 por Helm
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
+ingress:
+  host: counter.local
+  path: /
+  pathType: Prefix
+  annotations: {}

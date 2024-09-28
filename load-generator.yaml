@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: load-generator
+  template:
+    metadata:
+      labels:
+        app: load-generator
+    spec:
+      containers:
+      - name: load-generator
+        image: busybox
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo 'Generating load'; done"]
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 200m
