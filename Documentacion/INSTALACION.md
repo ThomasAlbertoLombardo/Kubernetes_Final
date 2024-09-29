@@ -16,8 +16,8 @@ Esta guía te llevará a través de los pasos necesarios para instalar y despleg
 Primero, clona el repositorio del proyecto:
 
 ```bash
-git clone https://github.com/tu-usuario/nombre-del-repo.git
-cd nombre-del-repo
+git clone https://github.com/ThomasAlbertoLombardo/Kubernetes_Final.git
+cd Kubernetes_Final
 ```
 
 ### 2. Iniciar Minikube
