@@ -19,9 +19,6 @@ La aplicación consiste en un servicio web simple que mantiene un contador en Re
 - Configuración de Ingress para el acceso externo
 - Escalado horizontal automático basado en la carga de CPU
 
-## Arquitectura
-![Diagrama de Arquitectura](Documentacion/img/arquitectura.png)
-
 ## Tecnologías Utilizadas
 - Python con Flask para el backend
 - Redis para el almacenamiento de datos
@@ -35,8 +32,8 @@ Para una guía detallada de instalación, consulta [INSTALACION.md](Documentacio
 
 1. Clona el repositorio
 ```bash
-git clone https://github.com/tu-usuario/nombre-del-repo.git
-cd nombre-del-repo
+git clone https://github.com/ThomasAlbertoLombardo/Kubernetes_Final.git
+cd Kubernetes_Final
 ```
 2. Construye la imagen Docker
 ```bash
@@ -58,6 +55,29 @@ kubectl get pods
 ```bash
 echo "$(minikube ip) counter.local" | sudo tee -a /etc/hosts
 ```
+7. Accede a la aplicación en tu navegador:
+```bash
+http://counter.local
+```
+## Resultado de la Práctica
+
+### Pods en Ejecución
+![Pods](Documentacion/img/pods.png)
+
+### Servicios Activos
+![Servicios](Documentacion/img/services.png)
+
+### Ingress Configurado
+![Ingress](Documentacion/img/ingress.png)
+
+### Escalado Automático
+![HPA](Documentacion/img/hpa.png)
+
+### Interfaz de Usuario
+![Interfaz](Documentacion/img/ui.png)
+
+### Logs de Aplicación
+![Logs](Documentacion/img/logs.png)
 7. Accede a la aplicación en tu navegador:
 ```bash
 http://counter.local
