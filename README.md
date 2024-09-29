@@ -78,7 +78,3 @@ http://counter.local
 
 ### Logs de Aplicación
 ![Logs](Documentacion/img/logs.png)
-7. Accede a la aplicación en tu navegador:
-```bash
-http://counter.local
-```
